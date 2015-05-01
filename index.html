@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <title>Printy Demo</title>
+    <link rel="stylesheet" href="/temp/Printy-bundle.css">
+    <link rel="stylesheet" href="/temp/Printy.css">
+  </head>
+  <body>
+    <div ng-app="app" style="padding: 30px">
+      <div ng-controller="demoCtrl">
+        <button type="submit" ng-click="printFromTemplateFile()">Print from template file</button>
+        <button type="submit" ng-click="printFromTemplate()">Print from inline template</button>
+      </div>
+    </div>
+    <script src="/temp/Printy-bundle.js"></script>
+    <script src="/temp/Printy.js"></script>
+    <script type="text/javascript">
+      angular.module('app', ['Printy'])
+      .controller('demoCtrl', function($scope, printy) {
+        $scope.printFromTemplateFile = function() {
+          printy.print(
+            {
+              templateUrl: 'app/templates/testTemplate.html',
+              scope: {backorderMeds: [
+                  'hi',
+                  'tylenol'
+                ],
+                deliveryDay: {day: "Monday"},
+                shippingDay: {day: "Friday"},
+                hideForPrint: true
+              }
+              //scope: {hello: 'Hey Dude'},
+              //features: {width: 500}
+            }
+          );
+        };
+
+        $scope.printFromTemplate = function() {
+          printy.print(
+            {
+              template: '<div>Cool Stuff from inline template <div>{{hello}}</div></div>',
+              scope: {hello: 'Hey Man'}
+            }
+          );
+        };
+      });
+    </script>
+  </body>
+</html>
+

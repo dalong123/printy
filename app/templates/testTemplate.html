@@ -1,0 +1,75 @@
+<!--<div>-->
+  <!--Cool Stuff from template FILE!-->
+  <!--<div>{{hello}}</div>-->
+<!--</div>-->
+
+<div class="row-fluid existing-basket-modal">
+
+  <div class="modal-header grid-dialog-header well">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <h4 class="text-center">Shipping Delay Form</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="span12">
+        <div class="span4"></div>
+        <div class="span5">
+          <div class="header-text">Medication Shipping Delay</div> 
+        </div>
+        <div class="span3 header-image">
+          <img src="../../images/CK-Logo.png" alt="CK-Logo"></img> 
+        </div>
+      </div>
+      <div class="span12">
+        <div class="backorder-text">All/Part of some of your medications is <strong>backordered</strong> at this time.</div>
+      </div>
+    </div>
+    <div class="span12">
+      <div class="backorder-text">Medication(s) currently on order:</div>
+      <div class="backorder-text" ng-repeat="med in backorderMeds">
+        {{ med }}
+      </div>
+      <input class="addBackorderMed" ng-model="backorderedMed" type="text">
+      <button class="btn btn-primary" ng-click="addMedToBackorderedList(backorderedMed)">Add</button>
+    </div>
+
+    <div class="span12">
+      <div class="span6">
+        <div ng-show="true">Work fool</div>
+      </div>
+
+      <div class="span6">
+        <div class="backorder-text">It will be <strong>shipped: </strong>{{shippingDay.day}}</div>
+        <select ng-hide="hideForPrint" class="daySelector" ng-model="shippingDays" ng-options="day.day for day in shippingDays"></select>
+      </div>
+      <div class="span6">
+        <div class="backorder-text">For <strong>delivery: </strong>{{deliveryDay.day}}</div>
+        <select ng-hide="hideForPrint" class="daySelector" ng-model="deliveryDays" ng-options="day.day for day in deliveryDays"></select>
+      </div>
+    </div>
+
+    <div class="span12">
+      <div class="contact-text">If you have any questions, please call the pharmacy at <strong>888-974-2763, press option 1</strong> and our
+        pharmacy team would be happy to assist you.</div>
+    </div>
+    <div class="span12">
+      <div class="contact-text">The CareKinesis Pharmacy Team</div>
+    </div>  
+  </div>
+
+  <div class="modal-footer">
+    <div class="row-fluid">
+      <div>
+        <a ng-click="cancel()">Cancel</a>
+        <button class='btn'ng-click="close()">Close</button>
+        <button class="btn btn-primary" ng-click="print()">Print</button>
+      </div>
+    </div>
+    {{hideForPrint}}
+    {{backorderMeds}}
+  </div>
+</div>
